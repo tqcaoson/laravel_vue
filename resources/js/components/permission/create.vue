@@ -79,10 +79,14 @@
   },
 
   methods:{
-    permissionInsert(){
-      this.$store.dispatch('permission/addPermission', this.form);
-      this.$router.push({ name: 'permission'})
-      Notification.success()
+    async permissionInsert(){
+      try{
+        await this.$store.dispatch('permission/addPermission', this.form);
+        this.$router.push({ name: 'permission'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
     },
   } 
 

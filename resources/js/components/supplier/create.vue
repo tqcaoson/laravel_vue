@@ -165,10 +165,14 @@
      }
 
     },
-    supplierInsert(){
-      this.$store.dispatch('supplier/addSupplier', this.form)
-      this.$router.push({ name: 'supplier'})
-      Notification.success()
+    async supplierInsert(){
+      try{
+        await this.$store.dispatch('supplier/addSupplier', this.form)
+        this.$router.push({ name: 'supplier'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

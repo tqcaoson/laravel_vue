@@ -166,10 +166,14 @@
      }
 
     },
-  supplierUpdate(){
-  	  this.$store.dispatch('supplier/editSupplier', this.form)
-      this.$router.push({ name: 'supplier'})
-      Notification.success()
+  async supplierUpdate(){
+      try{
+        await this.$store.dispatch('supplier/editSupplier', this.form)
+        this.$router.push({ name: 'supplier'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

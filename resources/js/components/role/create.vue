@@ -118,10 +118,14 @@
   },
 
   methods:{
-    roleInsert(){
-      this.$store.dispatch('role/addRole', this.form);
-      this.$router.push({ name: 'role'})
-      Notification.success()
+    async roleInsert(){
+      try{
+        await this.$store.dispatch('role/addRole', this.form);
+        this.$router.push({ name: 'role'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
     },
   } 
 

@@ -152,14 +152,14 @@
      }
 
     },
-  customerUpdate(){
-  	  let id = this.$route.params.id
-       axios.patch('/api/customer/'+id,this.form)
-       .then(() => {
+  async customerUpdate(){
+      try{
+        await this.$store.dispatch('customer/editCustomer', this.form)
         this.$router.push({ name: 'customer'})
         Notification.success()
-       })
-       .catch(error =>this.errors = error.response.data.errors)
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

@@ -31,14 +31,14 @@ const RoleStore = {
                 .catch();
         },
         addRole({}, role) {
-            axios.post(`${RESOURCE_ROLE}`, {
+            return axios.post(`${RESOURCE_ROLE}`, {
                 name: role.name,
                 permission: role.permission
             })
             .then();
         },
         editRole({}, role) {
-            axios.put(`${RESOURCE_ROLE}/${role.id}`, {
+            return axios.put(`${RESOURCE_ROLE}/${role.id}`, {
                 name: role.name,
                 permission: role.permission
             })

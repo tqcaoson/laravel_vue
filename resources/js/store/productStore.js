@@ -31,7 +31,7 @@ const ProductStore = {
                 .catch();
         },
         addProduct({}, product) {
-            axios.post(`${RESOURCE_PRODUCT}`, {
+            return axios.post(`${RESOURCE_PRODUCT}`, {
                 product_name: product.product_name,
                 product_code: product.product_code,
                 category_id: product.category_id,
@@ -46,7 +46,7 @@ const ProductStore = {
             .then();
         },
         editProduct({}, product) {
-            axios.put(`${RESOURCE_PRODUCT}/${product.id}`, {
+            return axios.put(`${RESOURCE_PRODUCT}/${product.id}`, {
                 product_name: product.product_name,
                 product_code: product.product_code,
                 category_id: product.category_id,

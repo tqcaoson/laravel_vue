@@ -186,10 +186,14 @@
      }
 
     },
-    employeeInsert(){
-      this.$store.dispatch('employee/addEmployee', this.form);
-      this.$router.push({ name: 'employee'})
-      Notification.success()
+    async employeeInsert(){
+      try{
+        await this.$store.dispatch('employee/addEmployee', this.form);
+        this.$router.push({ name: 'employee'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
     },
   } 
 

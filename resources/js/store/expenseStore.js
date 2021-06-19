@@ -31,14 +31,14 @@ const ExpenseStore = {
                 .catch();
         },
         addExpense({}, expense) {
-            axios.post(`${RESOURCE_EXPENSE}`, {
+            return axios.post(`${RESOURCE_EXPENSE}`, {
                 details: expense.details,
                 amount: expense.amount
             })
             .then();
         },
         editExpense({}, expense) {
-            axios.put(`${RESOURCE_EXPENSE}/${expense.id}`, {
+            return axios.put(`${RESOURCE_EXPENSE}/${expense.id}`, {
                 details: expense.details,
                 amount: expense.amount
             })

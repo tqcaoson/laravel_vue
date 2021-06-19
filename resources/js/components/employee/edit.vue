@@ -185,10 +185,14 @@
      }
 
     },
-    employeeUpdate(){
-      this.$store.dispatch('employee/editEmployee', this.form);
-      this.$router.push({ name: 'employee'})
-      Notification.success()
+    async employeeUpdate(){
+      try{
+        await this.$store.dispatch('employee/editEmployee', this.form);
+        this.$router.push({ name: 'employee'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

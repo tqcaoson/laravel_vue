@@ -100,11 +100,15 @@
 
   methods:{
     
-  expenseUpdate(){
-      this.$store.dispatch('expense/editExpense', this.form);
-      this.$router.push({ name: 'expense'})
-      Notification.success()
-     },
+    async expenseUpdate(){
+      try{
+        await this.$store.dispatch('expense/editExpense', this.form)
+        this.$router.push({ name: 'expense'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
+    },
   } 
 
 

@@ -88,10 +88,14 @@
 
   methods:{
     
-  categoryInsert(){
-      this.$store.dispatch('category/addCategory', this.form);
-      this.$router.push({ name: 'category'})
-      Notification.success()
+  async categoryInsert(){
+      try{
+        await this.$store.dispatch('category/addCategory', this.form);
+        this.$router.push({ name: 'category'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

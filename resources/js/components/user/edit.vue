@@ -127,11 +127,14 @@
   },
 
   methods:{
-    userUpdate(){
-      //console.log(this.user.form);
-      this.$store.dispatch('user/editUser', this.form);
-      this.$router.push({ name: 'user'})
-      Notification.success()
+    async userUpdate(){
+      try{
+        await this.$store.dispatch('user/editUser', this.form);
+        this.$router.push({ name: 'user'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
     },
   } 
 

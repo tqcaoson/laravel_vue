@@ -151,11 +151,14 @@
      }
 
     },
-  customerInsert(){
-      this.$store.dispatch('customer/addCustomer', this.form)
-      this.$router.push({ name: 'customer'})
-      Notification.success()
-       
+  async customerInsert(){
+      try{
+        await this.$store.dispatch('customer/addCustomer', this.form)
+        this.$router.push({ name: 'customer'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

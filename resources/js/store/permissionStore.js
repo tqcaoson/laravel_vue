@@ -31,13 +31,13 @@ const PermissionStore = {
                 .catch();
         },
         addPermission({}, permission) {
-            axios.post(`${RESOURCE_PERMISSION}`, {
+            return axios.post(`${RESOURCE_PERMISSION}`, {
                 name: permission.name
             })
             .then();
         },
         editPermission({}, permission) {
-            axios.put(`${RESOURCE_PERMISSION}/${permission.id}`, {
+            return axios.put(`${RESOURCE_PERMISSION}/${permission.id}`, {
                 name: permission.name
             })
             .then();

@@ -31,13 +31,13 @@ const CategoryStore = {
                 .catch();
         },
         addCategory({}, category) {
-            axios.post(`${RESOURCE_CATEGORY}`, {
+            return axios.post(`${RESOURCE_CATEGORY}`, {
                 category_name: category.category_name
             })
             .then();
         },
         editCategory({}, category) {
-            axios.put(`${RESOURCE_CATEGORY}/${category.id}`, {
+            return axios.put(`${RESOURCE_CATEGORY}/${category.id}`, {
                 category_name: category.category_name
             })
             .then();

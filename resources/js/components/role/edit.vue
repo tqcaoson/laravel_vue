@@ -127,14 +127,17 @@
         }
       return permissions
     },
-    roleUpdate(){
+    async roleUpdate(){
       this.permissions.forEach(element => {
         this.form.permission.push(element)
       });
-      //console.log(this.form.permission)
-      this.$store.dispatch('role/editRole', this.form);
-      this.$router.push({ name: 'role'})
-      Notification.success()
+      try{
+        await this.$store.dispatch('role/editRole', this.form);
+        this.$router.push({ name: 'role'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
     },
   } 
 

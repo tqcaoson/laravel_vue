@@ -86,10 +86,14 @@
   },
 
   methods:{
-    permissionUpdate(){
-      this.$store.dispatch('permission/editPermission', this.form);
-      this.$router.push({ name: 'permission'})
-      Notification.success()
+    async permissionUpdate(){
+      try{
+        await this.$store.dispatch('permission/editPermission', this.form);
+        this.$router.push({ name: 'permission'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

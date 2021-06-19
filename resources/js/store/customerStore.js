@@ -31,7 +31,7 @@ const CustomerStore = {
                 .catch();
         },
         addCustomer({}, customer) {
-            axios.post(`${RESOURCE_CUSTOMER}`, {
+            return axios.post(`${RESOURCE_CUSTOMER}`, {
                 name: customer.name,
                 email: customer.email,
                 phone: customer.phone,
@@ -42,7 +42,7 @@ const CustomerStore = {
             .then();
         },
         editCustomer({}, customer) {
-            axios.put(`${RESOURCE_CUSTOMER}/${customer.id}`, {
+            return axios.put(`${RESOURCE_CUSTOMER}/${customer.id}`, {
                 name: customer.name,
                 email: customer.email,
                 phone: customer.phone,

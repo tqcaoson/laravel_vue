@@ -31,7 +31,7 @@ const SupplierStore = {
                 .catch();
         },
         addSupplier({}, supplier) {
-            axios.post(`${RESOURCE_SUPPLIER}`, {
+            return axios.post(`${RESOURCE_SUPPLIER}`, {
                 name: supplier.name,
                 email: supplier.email,
                 phone: supplier.phone,
@@ -42,7 +42,7 @@ const SupplierStore = {
             .then(error =>this.errors = error.response.data.errors);
         },
         editSupplier({}, supplier) {
-            axios.put(`${RESOURCE_SUPPLIER}/${supplier.id}`, {
+            return axios.put(`${RESOURCE_SUPPLIER}/${supplier.id}`, {
                 name: supplier.name,
                 email: supplier.email,
                 phone: supplier.phone,

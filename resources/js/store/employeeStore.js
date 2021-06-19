@@ -31,7 +31,7 @@ const EmployeeStore = {
                 .catch();
         },
         addEmployee({}, employee) {
-            axios.post(`${RESOURCE_EMPLOYEE}`, {
+            return axios.post(`${RESOURCE_EMPLOYEE}`, {
                 name: employee.name,
                 email: employee.email,
                 phone: employee.phone,
@@ -44,7 +44,7 @@ const EmployeeStore = {
             .then();
         },
         editEmployee({}, employee) {
-            axios.put(`${RESOURCE_EMPLOYEE}/${employee.id}`, {
+            return axios.put(`${RESOURCE_EMPLOYEE}/${employee.id}`, {
                 name: employee.name,
                 email: employee.email,
                 phone: employee.phone,

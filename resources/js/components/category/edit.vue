@@ -93,10 +93,14 @@
 
   methods:{
     
-  categoryUpdate(){
-      this.$store.dispatch('category/editCategory', this.form);
-      this.$router.push({ name: 'category'})
-      Notification.success()
+  async categoryUpdate(){
+      try{
+        await this.$store.dispatch('category/editCategory', this.form);
+        this.$router.push({ name: 'category'})
+        Notification.success()
+      } catch(e) {
+        this.errors = e.response.data.errors
+      }
      },
   } 
 

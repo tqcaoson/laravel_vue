@@ -40,24 +40,24 @@ const UserStore = {
                 .catch();
         },
         addUser({}, user) {
-            axios.post(`${RESOURCE_USER}`, {
+            return axios.post(`${RESOURCE_USER}`, {
                 name: user.name,
                 email: user.email,
                 password: user.password,
                 confirm_password: user.confirm_password,
                 roles: user.roles
             })
-            .then();
+            .then()
         },
         editUser({}, user) {
-            axios.put(`${RESOURCE_USER}/${user.id}`, {
+            return axios.put(`${RESOURCE_USER}/${user.id}`, {
                 name: user.name,
                 email: user.email,
                 password: user.password,
                 confirm_password: user.confirm_password,
                 roles: user.roles
             })
-            .then();
+            .then()
         },
         deleteUser({}, id) {
             axios.delete(`${RESOURCE_USER}/${id}`)

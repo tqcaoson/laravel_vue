@@ -2238,6 +2238,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2325,11 +2333,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     categoryInsert: function categoryInsert() {
-      this.$store.dispatch('category/addCategory', this.form);
-      this.$router.push({
-        name: 'category'
-      });
-      Notification.success();
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this.$store.dispatch('category/addCategory', _this.form);
+
+              case 3:
+                _this.$router.push({
+                  name: 'category'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -2345,8 +2380,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2439,15 +2482,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('category/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('category', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('category', {
   form: 'category'
 }))), _defineProperty(_created$data$created, "methods", {
   categoryUpdate: function categoryUpdate() {
-    this.$store.dispatch('category/editCategory', this.form);
-    this.$router.push({
-      name: 'category'
-    });
-    Notification.success();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.$store.dispatch('category/editCategory', _this.form);
+
+            case 3:
+              _this.$router.push({
+                name: 'category'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -2590,6 +2660,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2745,11 +2823,38 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     customerInsert: function customerInsert() {
-      this.$store.dispatch('customer/addCustomer', this.form);
-      this.$router.push({
-        name: 'customer'
-      });
-      Notification.success();
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this2.$store.dispatch('customer/addCustomer', _this2.form);
+
+              case 3:
+                _this2.$router.push({
+                  name: 'customer'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this2.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -2765,8 +2870,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2905,7 +3018,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('customer/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('customer', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('customer', {
   form: 'customer'
 }))), _defineProperty(_created$data$created, "methods", {
   onFileSelected: function onFileSelected(event) {
@@ -2928,16 +3041,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   customerUpdate: function customerUpdate() {
     var _this2 = this;
 
-    var id = this.$route.params.id;
-    axios.patch('/api/customer/' + id, this.form).then(function () {
-      _this2.$router.push({
-        name: 'customer'
-      });
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this2.$store.dispatch('customer/editCustomer', _this2.form);
 
-      Notification.success();
-    })["catch"](function (error) {
-      return _this2.errors = error.response.data.errors;
-    });
+            case 3:
+              _this2.$router.push({
+                name: 'customer'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this2.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -3087,6 +3220,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3278,11 +3419,38 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     employeeInsert: function employeeInsert() {
-      this.$store.dispatch('employee/addEmployee', this.form);
-      this.$router.push({
-        name: 'employee'
-      });
-      Notification.success();
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this2.$store.dispatch('employee/addEmployee', _this2.form);
+
+              case 3:
+                _this2.$router.push({
+                  name: 'employee'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this2.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -3298,8 +3466,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -3471,7 +3647,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('employee/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('employee', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('employee', {
   form: 'employee'
 }))), _defineProperty(_created$data$created, "methods", {
   onFileSelected: function onFileSelected(event) {
@@ -3492,11 +3668,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   employeeUpdate: function employeeUpdate() {
-    this.$store.dispatch('employee/editEmployee', this.form);
-    this.$router.push({
-      name: 'employee'
-    });
-    Notification.success();
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this2.$store.dispatch('employee/editEmployee', _this2.form);
+
+            case 3:
+              _this2.$router.push({
+                name: 'employee'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this2.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -3646,6 +3849,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3741,11 +3952,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     expenseInsert: function expenseInsert() {
-      this.$store.dispatch('expense/addExpense', this.form);
-      this.$router.push({
-        name: 'expense'
-      });
-      Notification.success();
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this.$store.dispatch('expense/addExpense', _this.form);
+
+              case 3:
+                _this.$router.push({
+                  name: 'expense'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -3761,8 +3999,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -3862,15 +4108,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('expense/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('expense', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('expense', {
   form: 'expense'
 }))), _defineProperty(_created$data$created, "methods", {
   expenseUpdate: function expenseUpdate() {
-    this.$store.dispatch('expense/editExpense', this.form);
-    this.$router.push({
-      name: 'expense'
-    });
-    Notification.success();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.$store.dispatch('expense/editExpense', _this.form);
+
+            case 3:
+              _this.$router.push({
+                name: 'expense'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -4724,6 +4997,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4804,11 +5085,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     permissionInsert: function permissionInsert() {
-      this.$store.dispatch('permission/addPermission', this.form);
-      this.$router.push({
-        name: 'permission'
-      });
-      Notification.success();
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this.$store.dispatch('permission/addPermission', _this.form);
+
+              case 3:
+                _this.$router.push({
+                  name: 'permission'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -4824,8 +5132,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -4912,15 +5228,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('permission/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('permission', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('permission', {
   form: 'permission'
 }))), _defineProperty(_created$data$created, "methods", {
   permissionUpdate: function permissionUpdate() {
-    this.$store.dispatch('permission/editPermission', this.form);
-    this.$router.push({
-      name: 'permission'
-    });
-    Notification.success();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.$store.dispatch('permission/editPermission', _this.form);
+
+            case 3:
+              _this.$router.push({
+                name: 'permission'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -6359,8 +6702,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$created$data;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -6477,15 +6828,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     errors: {}
   };
-}), _defineProperty(_created$created$data, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('permission', {
+}), _defineProperty(_created$created$data, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('permission', {
   listPermission: 'permissions'
 }))), _defineProperty(_created$created$data, "methods", {
   roleInsert: function roleInsert() {
-    this.$store.dispatch('role/addRole', this.form);
-    this.$router.push({
-      name: 'role'
-    });
-    Notification.success();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.$store.dispatch('role/addRole', _this.form);
+
+            case 3:
+              _this.$router.push({
+                name: 'role'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$created$data);
 
@@ -6667,15 +7045,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   roleUpdate: function roleUpdate() {
     var _this2 = this;
 
-    this.permissions.forEach(function (element) {
-      _this2.form.permission.push(element);
-    }); //console.log(this.form.permission)
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this2.permissions.forEach(function (element) {
+                _this2.form.permission.push(element);
+              });
 
-    this.$store.dispatch('role/editRole', this.form);
-    this.$router.push({
-      name: 'role'
-    });
-    Notification.success();
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _this2.$store.dispatch('role/editRole', _this2.form);
+
+            case 4:
+              _this2.$router.push({
+                name: 'role'
+              });
+
+              Notification.success();
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              _this2.errors = _context2.t0.response.data.errors;
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }))();
   }
 }), _created$created$data);
 
@@ -7514,6 +7917,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -7684,11 +8095,38 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     supplierInsert: function supplierInsert() {
-      this.$store.dispatch('supplier/addSupplier', this.form);
-      this.$router.push({
-        name: 'supplier'
-      });
-      Notification.success();
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this2.$store.dispatch('supplier/addSupplier', _this2.form);
+
+              case 3:
+                _this2.$router.push({
+                  name: 'supplier'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this2.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -7704,8 +8142,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$data$created;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -7858,7 +8304,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }
 }, _defineProperty(_created$data$created, "created", function created() {
   this.$store.dispatch('supplier/fetchOne', this.$route.params.id);
-}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('supplier', {
+}), _defineProperty(_created$data$created, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('supplier', {
   form: 'supplier'
 }))), _defineProperty(_created$data$created, "methods", {
   onFileSelected: function onFileSelected(event) {
@@ -7879,11 +8325,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   supplierUpdate: function supplierUpdate() {
-    this.$store.dispatch('supplier/editSupplier', this.form);
-    this.$router.push({
-      name: 'supplier'
-    });
-    Notification.success();
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this2.$store.dispatch('supplier/editSupplier', _this2.form);
+
+            case 3:
+              _this2.$router.push({
+                name: 'supplier'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this2.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$data$created);
 
@@ -8030,7 +8503,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8136,16 +8617,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        name: "/"
       });
     }
 
-    this.$store.dispatch('role/fetch');
+    this.$store.dispatch("role/fetch");
   },
   data: function data() {
     return {
@@ -8159,16 +8673,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       errors: {}
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('role', {
-    roles: 'roles'
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("role", {
+    roles: "roles"
   })),
   methods: {
     userInsert: function userInsert() {
-      this.$store.dispatch('user/addUser', this.form);
-      this.$router.push({
-        name: 'user'
-      });
-      Notification.success();
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _this.$store.dispatch("user/addUser", _this.form);
+
+              case 3:
+                _this.$router.push({
+                  name: 'user'
+                });
+
+                Notification.success();
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this.errors = _context.t0.response.data.errors;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     }
   }
 });
@@ -8184,8 +8725,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 var _created$created$data;
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -8308,18 +8857,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   return {
     errors: {}
   };
-}), _defineProperty(_created$created$data, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('user', {
+}), _defineProperty(_created$created$data, "computed", _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('user', {
   form: 'user'
-}), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('role', {
+}), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('role', {
   roles: 'roles'
 }))), _defineProperty(_created$created$data, "methods", {
   userUpdate: function userUpdate() {
-    //console.log(this.user.form);
-    this.$store.dispatch('user/editUser', this.form);
-    this.$router.push({
-      name: 'user'
-    });
-    Notification.success();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.$store.dispatch('user/editUser', _this.form);
+
+            case 3:
+              _this.$router.push({
+                name: 'user'
+              });
+
+              Notification.success();
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              _this.errors = _context.t0.response.data.errors;
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
   }
 }), _created$created$data);
 
@@ -62780,7 +63355,11 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.name
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(" " + _vm._s(_vm.errors.name[0]) + " ")
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.name[0]) +
+                                      "\n                        "
+                                  )
                                 ])
                               : _vm._e()
                           ]),
@@ -62819,7 +63398,9 @@ var render = function() {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.email[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.email[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -62863,7 +63444,9 @@ var render = function() {
                             _vm.errors.password
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.password[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.password[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -62903,9 +63486,9 @@ var render = function() {
                             _vm.errors.confirm_password
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " +
+                                    "\n                          " +
                                       _vm._s(_vm.errors.confirm_password[0]) +
-                                      " "
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -62960,7 +63543,13 @@ var render = function() {
                                     key: role.id,
                                     domProps: { value: role.id }
                                   },
-                                  [_vm._v(_vm._s(role.name))]
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(role.name) +
+                                        "\n                          "
+                                    )
+                                  ]
                                 )
                               }),
                               0
@@ -62969,7 +63558,9 @@ var render = function() {
                             _vm.errors.roles
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    " " + _vm._s(_vm.errors.roles[0]) + " "
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.roles[0]) +
+                                      "\n                        "
                                   )
                                 ])
                               : _vm._e()
@@ -63012,7 +63603,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("\n                      Submit\n                    ")]
       )
     ])
   }
@@ -84188,14 +84779,14 @@ var CategoryStore = {
     addCategory: function addCategory(_ref3, category) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"]), {
         category_name: category.category_name
       }).then();
     },
     editCategory: function editCategory(_ref4, category) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"], "/").concat(category.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"], "/").concat(category.id), {
         category_name: category.category_name
       }).then();
     },
@@ -84266,7 +84857,7 @@ var CustomerStore = {
     addCustomer: function addCustomer(_ref3, customer) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"]), {
         name: customer.name,
         email: customer.email,
         phone: customer.phone,
@@ -84278,7 +84869,7 @@ var CustomerStore = {
     editCustomer: function editCustomer(_ref4, customer) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"], "/").concat(customer.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"], "/").concat(customer.id), {
         name: customer.name,
         email: customer.email,
         phone: customer.phone,
@@ -84354,7 +84945,7 @@ var EmployeeStore = {
     addEmployee: function addEmployee(_ref3, employee) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"]), {
         name: employee.name,
         email: employee.email,
         phone: employee.phone,
@@ -84368,7 +84959,7 @@ var EmployeeStore = {
     editEmployee: function editEmployee(_ref4, employee) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"], "/").concat(employee.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"], "/").concat(employee.id), {
         name: employee.name,
         email: employee.email,
         phone: employee.phone,
@@ -84446,7 +85037,7 @@ var ExpenseStore = {
     addExpense: function addExpense(_ref3, expense) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"]), {
         details: expense.details,
         amount: expense.amount
       }).then();
@@ -84454,7 +85045,7 @@ var ExpenseStore = {
     editExpense: function editExpense(_ref4, expense) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"], "/").concat(expense.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"], "/").concat(expense.id), {
         details: expense.details,
         amount: expense.amount
       }).then();
@@ -84526,14 +85117,14 @@ var PermissionStore = {
     addPermission: function addPermission(_ref3, permission) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"]), {
         name: permission.name
       }).then();
     },
     editPermission: function editPermission(_ref4, permission) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"], "/").concat(permission.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"], "/").concat(permission.id), {
         name: permission.name
       }).then();
     },
@@ -84604,7 +85195,7 @@ var ProductStore = {
     addProduct: function addProduct(_ref3, product) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"]), {
         product_name: product.product_name,
         product_code: product.product_code,
         category_id: product.category_id,
@@ -84620,7 +85211,7 @@ var ProductStore = {
     editProduct: function editProduct(_ref4, product) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"], "/").concat(product.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"], "/").concat(product.id), {
         product_name: product.product_name,
         product_code: product.product_code,
         category_id: product.category_id,
@@ -84700,7 +85291,7 @@ var RoleStore = {
     addRole: function addRole(_ref3, role) {
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"]), {
         name: role.name,
         permission: role.permission
       }).then();
@@ -84708,7 +85299,7 @@ var RoleStore = {
     editRole: function editRole(_ref4, role) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"], "/").concat(role.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"], "/").concat(role.id), {
         name: role.name,
         permission: role.permission
       }).then();
@@ -84828,7 +85419,7 @@ var SupplierStore = {
 
       _objectDestructuringEmpty(_ref3);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"]), {
         name: supplier.name,
         email: supplier.email,
         phone: supplier.phone,
@@ -84842,7 +85433,7 @@ var SupplierStore = {
     editSupplier: function editSupplier(_ref4, supplier) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"], "/").concat(supplier.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"], "/").concat(supplier.id), {
         name: supplier.name,
         email: supplier.email,
         phone: supplier.phone,
@@ -84928,7 +85519,7 @@ var UserStore = {
     addUser: function addUser(_ref4, user) {
       _objectDestructuringEmpty(_ref4);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"]), {
         name: user.name,
         email: user.email,
         password: user.password,
@@ -84939,7 +85530,7 @@ var UserStore = {
     editUser: function editUser(_ref5, user) {
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"], "/").concat(user.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"], "/").concat(user.id), {
         name: user.name,
         email: user.email,
         password: user.password,
@@ -84980,8 +85571,8 @@ var UserStore = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/admin/Documents/code/laravel-vue-master/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/admin/Documents/code/laravel-vue-master/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macos/Documents/GitHub/laravel_vue/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/macos/Documents/GitHub/laravel_vue/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
