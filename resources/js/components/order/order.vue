@@ -64,7 +64,7 @@
 
 
 <script type="text/javascript">
-
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -87,7 +87,11 @@
  
   methods:{
     allOrder(){
-      axios.get('/api/orders/')
+      axios.get('/api/orders/', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(({data}) => (this.orders = data))
       .catch()
     },
@@ -101,7 +105,7 @@
 
   } 
 </script>
-
+ 
 
 <style type="text/css">
   #em_photo{

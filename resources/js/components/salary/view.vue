@@ -65,7 +65,7 @@
 
 
 <script type="text/javascript">
-  
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -89,7 +89,11 @@
   methods:{
     viewSalary(){
      let id = this.$route.params.id
-       axios.get('/api/salary/view/'+id)
+       axios.get('/api/salary/view/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
        .then(({data}) => (this.salaries = data))
        .catch(error =>this.errors = error.response.data.errors)
      },

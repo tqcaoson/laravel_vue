@@ -163,7 +163,7 @@
 
 
 <script type="text/javascript">
-  
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -181,11 +181,19 @@
   },
   created(){
   	let id = this.$route.params.id
-  	axios.get('/api/order/details/'+id)
+  	axios.get('/api/order/details/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
   	.then(({data}) => (this.orders = data))
   	.catch(console.log('error'))
 
-    axios.get('/api/order/orderdetails/'+id)
+    axios.get('/api/order/orderdetails/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
     .then(({data}) => (this.details = data))
     .catch(console.log('error'))
  

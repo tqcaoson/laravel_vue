@@ -145,7 +145,7 @@
 
 
 <script type="text/javascript">
-  
+  import AppStorage from '../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -172,28 +172,48 @@
  },
   methods:{
      TodaySell(){
-      axios.get('/api/today/sell')
+      axios.get('/api/today/sell', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
         .then(({data}) => (this.todaysell = data))
         .catch()
-     },
+     }, 
      TodayIncome(){
-      axios.get('/api/today/income')
+      axios.get('/api/today/income', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
         .then(({data}) => (this.income = data))
         .catch()
      },
      TodayDue(){
-      axios.get('/api/today/due')
+      axios.get('/api/today/due', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
         .then(({data}) => (this.due = data))
         .catch()
      },
      TodayExpense(){
-      axios.get('/api/today/expense')
+      axios.get('/api/today/expense', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
         .then(({data}) => (this.expense = data))
         .catch()
      },
 
      StockOut(){
-      axios.get('/api/today/stockout')
+      axios.get('/api/today/stockout', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
         .then(({data}) => (this.products = data))
         .catch()
      },

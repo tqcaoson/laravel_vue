@@ -113,7 +113,7 @@
 
 
 <script type="text/javascript">
-  
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -136,7 +136,11 @@
   },
   created(){
   	let id = this.$route.params.id
-  	axios.get('/api/edit/salary/'+id)
+  	axios.get('/api/edit/salary/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
   	.then(({data}) => (this.form = data))
   	.catch(console.log('error'))
   },
@@ -145,7 +149,11 @@
    
   SalaryUpdate(){
   	  let id = this.$route.params.id
-       axios.post('/api/salary/update/'+id,this.form)
+       axios.post('/api/salary/update/'+id,this.form, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
        .then(() => {
         this.$router.push({ name: 'salary'})
         Notification.success()

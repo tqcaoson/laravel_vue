@@ -113,6 +113,7 @@
 
 <script type="text/javascript">
   import { mapState } from 'vuex';
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -140,7 +141,11 @@
    
   SalaryPaid(){
   	  let id = this.$route.params.id
-       axios.post('/api/salary/paid/'+id,this.form)
+       axios.post('/api/salary/paid/'+id,this.form, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
        .then(() => {
         this.$router.push({ name: 'given-salary'})
         Notification.success()

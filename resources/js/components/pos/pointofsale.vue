@@ -224,6 +224,7 @@
 
 <script type="text/javascript">
   import { mapState } from 'vuex';
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -299,7 +300,11 @@
   methods:{
     // Cart Methods Here
   AddToCart(id){
-   axios.get('/api/addToCart/'+id)
+   axios.get('/api/addToCart/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(() => {
         Reload.$emit('AfterAdd');
         Notification.cart_success()
@@ -307,12 +312,20 @@
       .catch()
   },
   cartProduct(){
-      axios.get('/api/cart/product/')
+      axios.get('/api/cart/product/', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(({data}) => (this.carts = data))
       .catch()
   },
   removeItem(id){
-   axios.get('/api/remove/cart/'+id)
+   axios.get('/api/remove/cart/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(() => {
         Reload.$emit('AfterAdd');
         Notification.cart_delete()
@@ -320,7 +333,11 @@
       .catch()
   },
   increment(id){
-  axios.get('/api/increment/'+id)
+  axios.get('/api/increment/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(() => {
         Reload.$emit('AfterAdd');
         Notification.success()
@@ -328,7 +345,11 @@
       .catch()
   },
    decrement(id){
-    axios.get('/api/decrement/'+id)
+    axios.get('/api/decrement/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(() => {
         Reload.$emit('AfterAdd');
         Notification.success()
@@ -336,7 +357,11 @@
       .catch() 
   }, 
   vat(){
-       axios.get('/api/vats/')
+       axios.get('/api/vats/', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(({data}) => (this.vats = data))
       .catch()
   },
@@ -344,7 +369,11 @@
     let total = this.subtotal*this.vats.vat /100 + this.subtotal;
     var data = {qty:this.qty, subtotal:this.subtotal, customer_id:this.customer_id, payby:this.payby, pay:this.pay, due:this.due, vat:this.vats.vat, total:total }
 
-    axios.post('/api/orderdone',data)
+    axios.post('/api/orderdone',data, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
        .then(() => {
           Notification.success()
          this.$router.push({name: 'home'})
@@ -354,7 +383,11 @@
    
     // End Cart Methods 
     subproduct(id){
-      axios.get('/api/getting/product/'+id)
+      axios.get('/api/getting/product/'+id, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(({data}) => (this.getproducts = data))
       .catch()
     } 

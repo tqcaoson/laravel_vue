@@ -58,7 +58,7 @@
 
 
 <script type="text/javascript">
-  
+  import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (!User.loggedIn()) {
@@ -67,11 +67,13 @@
     },
     data(){
       return{
+        salaries:[],
         searchTerm:''
       }
     },
     computed:{
       filtersearch(){
+        console.log()
       return this.salaries.filter(salary => {
          return salary.salary_month.match(this.searchTerm)
       }) 
@@ -80,7 +82,11 @@
  
   methods:{
     allSalary(){
-      axios.get('/api/salary/')
+      axios.get('/api/salary/', {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(({data}) => (this.salaries = data))
       .catch()
     },

@@ -56,7 +56,7 @@
 
 
 <script type="text/javascript">
-	
+	import AppStorage from '../../Helpers/AppStorage';
   export default {
     created(){
       if (User.loggedIn()) {
@@ -75,11 +75,14 @@
   }, 
   methods:{
     login(){
-      axios.post('/api/auth/login',this.form)
+      axios.post('/api/auth/login',this.form, {
+        headers: {
+          Authorization: 'Bearer ' + AppStorage.getToken()
+        }
+      })
       .then(res => {
-        //console.log(res.data.user_id)
         User.responseAfterLogin(res)
-        this.$store.dispatch('user/fetchHasRole', res.data.user_id)
+        this.$store.dispatch('user/fetchHasRole', res.data.user_id, )
         Toast.fire({
           icon: 'success',
           title: 'Signed in successfully'
