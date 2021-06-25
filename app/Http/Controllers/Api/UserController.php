@@ -28,8 +28,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = DB::table('users')
-        ->join('model_has_roles', 'users.id', 'model_has_roles.model_id')
+        $users = User::join('model_has_roles', 'users.id', 'model_has_roles.model_id')
         ->join('roles', 'model_has_roles.role_id', 'roles.id')
         ->select('users.*', 'roles.name as role_name')
         ->get();
@@ -38,13 +37,11 @@ class UserController extends Controller
 
     public function getHasRole($id)
     {
-        $roles = DB::table('model_has_roles')
-        ->join('role_has_permissions', 'model_has_roles.role_id', 'role_has_permissions.role_id')
-        ->join('permissions', 'role_has_permissions.permission_id', 'permissions.id')
+        $role = Role::find($id);
+        $permissions = $role->permissions()
         ->select(['permissions.name', 'permissions.id'])
-        ->where('model_has_roles.model_id', $id)
         ->get();
-        return response()->json($roles);
+        return response()->json($permissions);
     }
     
     /**

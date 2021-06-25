@@ -73,10 +73,10 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = Role::find($id);
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
-            ->pluck('role_has_permissions.permission_id')
+        $rolePermissions = $role->permissions()
+            ->pluck('id')
             ->all();
-        $countrRolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)->count();
+        $countrRolePermissions = count($rolePermissions);
         $data = [
             "id" => $id,
             "name" => $role->name,
@@ -98,8 +98,8 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
-            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        $rolePermissions = $role->permissions()
+            ->pluck('id','id')
             ->all();
         return response()->json(['rolePermissions' => $rolePermissions, 'role' => $role, 'permission' => $permission]);
     }
