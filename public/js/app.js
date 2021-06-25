@@ -2091,6 +2091,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
 //
 //
 //
@@ -2099,11 +2100,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userId');
+    _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_0__["default"].clear();
     Toast.fire({
       icon: 'success',
       title: 'Logout successfully'
@@ -80561,17 +80561,17 @@ var AppStorage = /*#__PURE__*/function () {
   }, {
     key: "getToken",
     value: function getToken() {
-      localStorage.getItem(token);
+      return localStorage.getItem('token');
     }
   }, {
     key: "getUser",
     value: function getUser() {
-      localStorage.getItem(user);
+      return localStorage.getItem('user');
     }
   }, {
     key: "getUserId",
     value: function getUserId() {
-      localStorage.getItem(userId);
+      return localStorage.getItem('userId');
     }
   }]);
 
@@ -84741,8 +84741,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -84766,28 +84768,44 @@ var CategoryStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CATEGORY"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CATEGORY"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addCategory: function addCategory(_ref3, category) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CATEGORY"]), {
         category_name: category.category_name
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editCategory: function editCategory(_ref4, category) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"], "/").concat(category.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CATEGORY"], "/").concat(category.id), {
         category_name: category.category_name
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteCategory: function deleteCategory(_ref5, id) {
@@ -84795,7 +84813,11 @@ var CategoryStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CATEGORY"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CATEGORY"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('category/fetch');
       })["catch"]();
     }
@@ -84819,8 +84841,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -84844,38 +84868,54 @@ var CustomerStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CUSTOMER"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CUSTOMER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addCustomer: function addCustomer(_ref3, customer) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CUSTOMER"]), {
         name: customer.name,
         email: customer.email,
         phone: customer.phone,
         address: customer.address,
         photo: customer.photo,
         newphoto: customer.newphoto
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editCustomer: function editCustomer(_ref4, customer) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"], "/").concat(customer.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CUSTOMER"], "/").concat(customer.id), {
         name: customer.name,
         email: customer.email,
         phone: customer.phone,
         address: customer.address,
         photo: customer.photo,
         newphoto: customer.newphoto
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteCustomer: function deleteCustomer(_ref5, id) {
@@ -84883,7 +84923,11 @@ var CustomerStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_CUSTOMER"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_CUSTOMER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('customer/fetch');
       })["catch"]();
     }
@@ -84907,8 +84951,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -84932,20 +84978,28 @@ var EmployeeStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EMPLOYEE"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EMPLOYEE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addEmployee: function addEmployee(_ref3, employee) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EMPLOYEE"]), {
         name: employee.name,
         email: employee.email,
         phone: employee.phone,
@@ -84954,12 +85008,16 @@ var EmployeeStore = {
         photo: employee.photo,
         nid: employee.nid,
         joining_date: employee.joining_date
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editEmployee: function editEmployee(_ref4, employee) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"], "/").concat(employee.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EMPLOYEE"], "/").concat(employee.id), {
         name: employee.name,
         email: employee.email,
         phone: employee.phone,
@@ -84968,6 +85026,10 @@ var EmployeeStore = {
         photo: employee.photo,
         nid: employee.nid,
         joining_date: employee.joining_date
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteEmployee: function deleteEmployee(_ref5, id) {
@@ -84975,7 +85037,11 @@ var EmployeeStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EMPLOYEE"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EMPLOYEE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('employee/fetch');
       })["catch"]();
     }
@@ -84999,8 +85065,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85024,30 +85092,46 @@ var ExpenseStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EXPENSE"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EXPENSE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addExpense: function addExpense(_ref3, expense) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EXPENSE"]), {
         details: expense.details,
         amount: expense.amount
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editExpense: function editExpense(_ref4, expense) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"], "/").concat(expense.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EXPENSE"], "/").concat(expense.id), {
         details: expense.details,
         amount: expense.amount
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteExpense: function deleteExpense(_ref5, id) {
@@ -85055,7 +85139,11 @@ var ExpenseStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_EXPENSE"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_EXPENSE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('expense/fetch');
       })["catch"]();
     }
@@ -85079,8 +85167,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85104,28 +85194,44 @@ var PermissionStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PERMISSION"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PERMISSION"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addPermission: function addPermission(_ref3, permission) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PERMISSION"]), {
         name: permission.name
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editPermission: function editPermission(_ref4, permission) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"], "/").concat(permission.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PERMISSION"], "/").concat(permission.id), {
         name: permission.name
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deletePermission: function deletePermission(_ref5, id) {
@@ -85133,7 +85239,11 @@ var PermissionStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PERMISSION"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PERMISSION"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('permission/fetch');
       })["catch"]();
     }
@@ -85157,8 +85267,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85182,20 +85294,28 @@ var ProductStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PRODUCT"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PRODUCT"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addProduct: function addProduct(_ref3, product) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PRODUCT"]), {
         product_name: product.product_name,
         product_code: product.product_code,
         category_id: product.category_id,
@@ -85206,12 +85326,16 @@ var ProductStore = {
         buying_date: product.buying_date,
         image: product.image,
         product_quantity: product.product_quantity
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editProduct: function editProduct(_ref4, product) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"], "/").concat(product.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PRODUCT"], "/").concat(product.id), {
         product_name: product.product_name,
         product_code: product.product_code,
         category_id: product.category_id,
@@ -85222,6 +85346,10 @@ var ProductStore = {
         buying_date: product.buying_date,
         image: product.image,
         product_quantity: product.product_quantity
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteProduct: function deleteProduct(_ref5, id) {
@@ -85229,7 +85357,11 @@ var ProductStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_PRODUCT"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_PRODUCT"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('product/fetch');
       })["catch"]();
     }
@@ -85253,8 +85385,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85278,30 +85412,46 @@ var RoleStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_ROLE"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_ROLE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     addRole: function addRole(_ref3, role) {
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_ROLE"]), {
         name: role.name,
         permission: role.permission
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editRole: function editRole(_ref4, role) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"], "/").concat(role.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_ROLE"], "/").concat(role.id), {
         name: role.name,
         permission: role.permission
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteRole: function deleteRole(_ref5, id) {
@@ -85309,7 +85459,11 @@ var RoleStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_ROLE"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_ROLE"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('role/fetch');
       })["catch"]();
     }
@@ -85379,8 +85533,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85404,13 +85560,21 @@ var SupplierStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_SUPPLIER"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_SUPPLIER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
@@ -85419,13 +85583,17 @@ var SupplierStore = {
 
       _objectDestructuringEmpty(_ref3);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_SUPPLIER"]), {
         name: supplier.name,
         email: supplier.email,
         phone: supplier.phone,
         shopname: supplier.shopname,
         address: supplier.address,
         photo: supplier.photo
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then(function (error) {
         return _this.errors = error.response.data.errors;
       });
@@ -85433,13 +85601,17 @@ var SupplierStore = {
     editSupplier: function editSupplier(_ref4, supplier) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"], "/").concat(supplier.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_SUPPLIER"], "/").concat(supplier.id), {
         name: supplier.name,
         email: supplier.email,
         phone: supplier.phone,
         shopname: supplier.shopname,
         address: supplier.address,
         photo: supplier.photo
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteSupplier: function deleteSupplier(_ref5, id) {
@@ -85447,7 +85619,11 @@ var SupplierStore = {
 
       _objectDestructuringEmpty(_ref5);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_SUPPLIER"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_SUPPLIER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this2.dispatch('supplier/fetch');
       })["catch"]();
     }
@@ -85471,8 +85647,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
+/* harmony import */ var _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/AppStorage */ "./resources/js/Helpers/AppStorage.js");
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../api/api */ "./resources/js/api/api.js");
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
 
 
 
@@ -85500,42 +85678,62 @@ var UserStore = {
   actions: {
     fetch: function fetch(_ref) {
       var commit = _ref.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"]).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_USER"], {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH', response.data);
       })["catch"]();
     },
     fetchOne: function fetchOne(_ref2, id) {
       var commit = _ref2.commit;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"], "/").concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_USER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_ONE', response.data);
       })["catch"]();
     },
     fetchHasRole: function fetchHasRole(_ref3, id) {
       var commit = _ref3.commit;
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("api/has/".concat(id)).then(function (response) {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("api/has/".concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function (response) {
         return commit('FETCH_HAS_ROLE', response.data);
       })["catch"]();
     },
     addUser: function addUser(_ref4, user) {
       _objectDestructuringEmpty(_ref4);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"]), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_USER"]), {
         name: user.name,
         email: user.email,
         password: user.password,
         confirm_password: user.confirm_password,
         roles: user.roles
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     editUser: function editUser(_ref5, user) {
       _objectDestructuringEmpty(_ref5);
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"], "/").concat(user.id), {
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_USER"], "/").concat(user.id), {
         name: user.name,
         email: user.email,
         password: user.password,
         confirm_password: user.confirm_password,
         roles: user.roles
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
       }).then();
     },
     deleteUser: function deleteUser(_ref6, id) {
@@ -85543,7 +85741,11 @@ var UserStore = {
 
       _objectDestructuringEmpty(_ref6);
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_3__["RESOURCE_USER"], "/").concat(id)).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("".concat(_api_api__WEBPACK_IMPORTED_MODULE_4__["RESOURCE_USER"], "/").concat(id), {
+        headers: {
+          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_3__["default"].getToken()
+        }
+      }).then(function () {
         return _this.dispatch('user/fetch');
       })["catch"]();
     }

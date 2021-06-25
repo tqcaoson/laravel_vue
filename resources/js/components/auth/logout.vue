@@ -7,19 +7,16 @@
 
 
 <script type="text/javascript">
-	
-export default {
-   created(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    localStorage.removeItem('userId')
-    Toast.fire({
-          icon: 'success',
-          title: 'Logout successfully'
-        })
-    this.$router.push({ name: '/'})
-
-   }
+	import AppStorage from '../../Helpers/AppStorage';
+   export default {
+      created(){
+         AppStorage.clear()
+         Toast.fire({
+               icon: 'success',
+               title: 'Logout successfully'
+            })
+         this.$router.push({ name: '/'})
+      }
  
 
 }

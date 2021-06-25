@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import AppStorage from '../Helpers/AppStorage';
 import {RESOURCE_SUPPLIER} from '../api/api';
 
 Vue.use(Vuex);
@@ -21,14 +22,22 @@ const SupplierStore = {
     },
     actions: {
         fetch({ commit }) {
-            return axios.get(RESOURCE_SUPPLIER)
-                .then(response => commit('FETCH', response.data))
-                .catch();
+            return axios.get(RESOURCE_SUPPLIER, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH', response.data))
+            .catch();
         },
         fetchOne({ commit }, id) {
-            axios.get(`${RESOURCE_SUPPLIER}/${id}`)
-                .then(response => commit('FETCH_ONE', response.data))
-                .catch();
+            axios.get(`${RESOURCE_SUPPLIER}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_ONE', response.data))
+            .catch();
         },
         addSupplier({}, supplier) {
             return axios.post(`${RESOURCE_SUPPLIER}`, {
@@ -38,6 +47,10 @@ const SupplierStore = {
                 shopname: supplier.shopname,
                 address: supplier.address,
                 photo: supplier.photo
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then(error =>this.errors = error.response.data.errors);
         },
@@ -49,11 +62,19 @@ const SupplierStore = {
                 shopname: supplier.shopname,
                 address: supplier.address,
                 photo: supplier.photo
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
         deleteSupplier({}, id) {
-            axios.delete(`${RESOURCE_SUPPLIER}/${id}`)
+            axios.delete(`${RESOURCE_SUPPLIER}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
                 .then(() => this.dispatch('supplier/fetch'))
                 .catch();
         },

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import AppStorage from '../Helpers/AppStorage';
 import {RESOURCE_USER} from '../api/api';
 
 Vue.use(Vuex);
@@ -25,19 +26,33 @@ const UserStore = {
     },
     actions: {
         fetch({ commit }) {
-            return axios.get(RESOURCE_USER)
-                .then(response => commit('FETCH', response.data))
-                .catch();
+            return axios.get(RESOURCE_USER, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH', response.data))
+            .catch();
         },
         fetchOne({ commit }, id) {
-            axios.get(`${RESOURCE_USER}/${id}`)
-                .then(response => commit('FETCH_ONE', response.data))
-                .catch();
+            axios.get(`${RESOURCE_USER}/${id}`,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_ONE', response.data))
+            .catch();
         },
         fetchHasRole({ commit }, id) {
-            return axios.get(`api/has/${id}`)
-                .then(response => commit('FETCH_HAS_ROLE', response.data))
-                .catch();
+            return axios.get(`api/has/${id}`,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_HAS_ROLE', response.data))
+            .catch();
         },
         addUser({}, user) {
             return axios.post(`${RESOURCE_USER}`, {
@@ -46,6 +61,11 @@ const UserStore = {
                 password: user.password,
                 confirm_password: user.confirm_password,
                 roles: user.roles
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then()
         },
@@ -56,13 +76,23 @@ const UserStore = {
                 password: user.password,
                 confirm_password: user.confirm_password,
                 roles: user.roles
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then()
         },
         deleteUser({}, id) {
-            axios.delete(`${RESOURCE_USER}/${id}`)
-                .then(() => this.dispatch('user/fetch'))
-                .catch();
+            axios.delete(`${RESOURCE_USER}/${id}`,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(() => this.dispatch('user/fetch'))
+            .catch();
         },
     }
 };

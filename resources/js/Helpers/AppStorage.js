@@ -25,15 +25,15 @@ class AppStorage{
   }
 
   getToken(){
-  	localStorage.getItem(token);
+  	return localStorage.getItem('token');
   }
 
    getUser(){
-  	localStorage.getItem(user);
+	return localStorage.getItem('user');
   }
 
   getUserId(){
-	localStorage.getItem(userId);
+	return localStorage.getItem('userId');
  }
 
 

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import AppStorage from '../Helpers/AppStorage';
 import {RESOURCE_PRODUCT} from '../api/api';
 
 Vue.use(Vuex);
@@ -21,14 +22,22 @@ const ProductStore = {
     },
     actions: {
         fetch({ commit }) {
-            return axios.get(RESOURCE_PRODUCT)
-                .then(response => commit('FETCH', response.data))
-                .catch();
+            return axios.get(RESOURCE_PRODUCT, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH', response.data))
+            .catch();
         },
         fetchOne({ commit }, id) {
-            axios.get(`${RESOURCE_PRODUCT}/${id}`)
-                .then(response => commit('FETCH_ONE', response.data))
-                .catch();
+            axios.get(`${RESOURCE_PRODUCT}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_ONE', response.data))
+            .catch();
         },
         addProduct({}, product) {
             return axios.post(`${RESOURCE_PRODUCT}`, {
@@ -42,6 +51,10 @@ const ProductStore = {
                 buying_date: product.buying_date,
                 image: product.image,
                 product_quantity: product.product_quantity
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
@@ -57,13 +70,21 @@ const ProductStore = {
                 buying_date: product.buying_date,
                 image: product.image,
                 product_quantity: product.product_quantity
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
         deleteProduct({}, id) {
-            axios.delete(`${RESOURCE_PRODUCT}/${id}`)
-                .then(() => this.dispatch('product/fetch'))
-                .catch();
+            axios.delete(`${RESOURCE_PRODUCT}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(() => this.dispatch('product/fetch'))
+            .catch();
         },
     }
 };

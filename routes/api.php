@@ -16,56 +16,61 @@ Route::group([
 
 });
 
-Route::apiResource('/role','Api\RoleController');
-Route::apiResource('/user','Api\UserController');
-Route::apiResource('/permission','Api\PermissionController');
+Route::group([
+    'middleware' => 'JWT',
+], function ($router) {
 
-Route::Get('/has/{id}', 'Api\UserController@getHasRole');
+    Route::apiResource('/role','Api\RoleController');
+    Route::apiResource('/user','Api\UserController');
+    Route::apiResource('/permission','Api\PermissionController');
 
-Route::apiResource('/employee', 'Api\EmployeeController');
-Route::apiResource('/supplier', 'Api\SupplierController');
-Route::apiResource('/category', 'Api\CategoryController');
-Route::apiResource('/product', 'Api\ProductController');
-Route::apiResource('/expense', 'Api\ExpenseController');
-Route::apiResource('/customer', 'Api\CustomerController');
+    Route::Get('/has/{id}', 'Api\UserController@getHasRole');
 
-Route::Post('/salary/paid/{id}', 'Api\SalaryController@Paid');
-Route::Get('/salary', 'Api\SalaryController@AllSalary');
+    Route::apiResource('/employee', 'Api\EmployeeController');
+    Route::apiResource('/supplier', 'Api\SupplierController');
+    Route::apiResource('/category', 'Api\CategoryController');
+    Route::apiResource('/product', 'Api\ProductController');
+    Route::apiResource('/expense', 'Api\ExpenseController');
+    Route::apiResource('/customer', 'Api\CustomerController');
 
-Route::Get('/salary/view/{id}', 'Api\SalaryController@ViewSalary');
-Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
-Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
+    Route::Post('/salary/paid/{id}', 'Api\SalaryController@Paid');
+    Route::Get('/salary', 'Api\SalaryController@AllSalary');
 
-Route::Post('/stock/update/{id}', 'Api\ProductController@StockUpdate');
+    Route::Get('/salary/view/{id}', 'Api\SalaryController@ViewSalary');
+    Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
+    Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
 
-Route::Get('/getting/product/{id}', 'Api\PosController@GetProduct');
+    Route::Post('/stock/update/{id}', 'Api\ProductController@StockUpdate');
 
-// Add to cart Route
-Route::Get('/addToCart/{id}', 'Api\CartController@AddToCart');
-Route::Get('/cart/product', 'Api\CartController@CartProduct');
+    Route::Get('/getting/product/{id}', 'Api\PosController@GetProduct');
 
-Route::Get('/remove/cart/{id}', 'Api\CartController@removeCart');
+    // Add to cart Route
+    Route::Get('/addToCart/{id}', 'Api\CartController@AddToCart');
+    Route::Get('/cart/product', 'Api\CartController@CartProduct');
 
-Route::Get('/increment/{id}', 'Api\CartController@increment');
-Route::Get('/decrement/{id}', 'Api\CartController@decrement');
+    Route::Get('/remove/cart/{id}', 'Api\CartController@removeCart');
 
-// Vat Route
-Route::Get('/vats', 'Api\CartController@Vats');
+    Route::Get('/increment/{id}', 'Api\CartController@increment');
+    Route::Get('/decrement/{id}', 'Api\CartController@decrement');
 
-Route::Post('/orderdone', 'Api\PosController@OrderDone');
+    // Vat Route
+    Route::Get('/vats', 'Api\CartController@Vats');
 
-// Order Route
-Route::Get('/orders', 'Api\OrderController@TodayOrder');
+    Route::Post('/orderdone', 'Api\PosController@OrderDone');
 
-Route::Get('/order/details/{id}', 'Api\OrderController@OrderDetails');
-Route::Get('/order/orderdetails/{id}', 'Api\OrderController@OrderDetailsAll');
+    // Order Route
+    Route::Get('/orders', 'Api\OrderController@TodayOrder');
 
-Route::Post('/search/order', 'Api\PosController@SearchOrderDate');
+    Route::Get('/order/details/{id}', 'Api\OrderController@OrderDetails');
+    Route::Get('/order/orderdetails/{id}', 'Api\OrderController@OrderDetailsAll');
 
-// Admin Dashboard Route
+    Route::Post('/search/order', 'Api\PosController@SearchOrderDate');
 
-Route::Get('/today/sell', 'Api\PosController@TodaySell');
-Route::Get('/today/income', 'Api\PosController@TodayIncome');
-Route::Get('/today/due', 'Api\PosController@TodayDue');
-Route::Get('/today/expense', 'Api\PosController@TodayExpense');
-Route::Get('/today/stockout', 'Api\PosController@Stockout');
+    // Admin Dashboard Route
+
+    Route::Get('/today/sell', 'Api\PosController@TodaySell');
+    Route::Get('/today/income', 'Api\PosController@TodayIncome');
+    Route::Get('/today/due', 'Api\PosController@TodayDue');
+    Route::Get('/today/expense', 'Api\PosController@TodayExpense');
+    Route::Get('/today/stockout', 'Api\PosController@Stockout');
+});

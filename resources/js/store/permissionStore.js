@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import AppStorage from '../Helpers/AppStorage';
 import {RESOURCE_PERMISSION} from '../api/api';
 
 Vue.use(Vuex);
@@ -21,31 +22,51 @@ const PermissionStore = {
     },
     actions: {
         fetch({ commit }) {
-            return axios.get(RESOURCE_PERMISSION)
-                .then(response => commit('FETCH', response.data))
-                .catch();
+            return axios.get(RESOURCE_PERMISSION, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH', response.data))
+            .catch();
         },
         fetchOne({ commit }, id) {
-            axios.get(`${RESOURCE_PERMISSION}/${id}`)
-                .then(response => commit('FETCH_ONE', response.data))
-                .catch();
+            axios.get(`${RESOURCE_PERMISSION}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_ONE', response.data))
+            .catch();
         },
         addPermission({}, permission) {
             return axios.post(`${RESOURCE_PERMISSION}`, {
                 name: permission.name
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
         editPermission({}, permission) {
             return axios.put(`${RESOURCE_PERMISSION}/${permission.id}`, {
                 name: permission.name
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
         deletePermission({}, id) {
-            axios.delete(`${RESOURCE_PERMISSION}/${id}`)
-                .then(() => this.dispatch('permission/fetch'))
-                .catch();
+            axios.delete(`${RESOURCE_PERMISSION}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(() => this.dispatch('permission/fetch'))
+            .catch();
         },
     }
 };

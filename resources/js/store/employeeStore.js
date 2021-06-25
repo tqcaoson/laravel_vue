@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import AppStorage from '../Helpers/AppStorage';
 import {RESOURCE_EMPLOYEE} from '../api/api';
 
 Vue.use(Vuex);
@@ -21,14 +22,22 @@ const EmployeeStore = {
     },
     actions: {
         fetch({ commit }) {
-            return axios.get(RESOURCE_EMPLOYEE)
-                .then(response => commit('FETCH', response.data))
-                .catch();
+            return axios.get(RESOURCE_EMPLOYEE, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH', response.data))
+            .catch();
         },
         fetchOne({ commit }, id) {
-            axios.get(`${RESOURCE_EMPLOYEE}/${id}`)
-                .then(response => commit('FETCH_ONE', response.data))
-                .catch();
+            axios.get(`${RESOURCE_EMPLOYEE}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(response => commit('FETCH_ONE', response.data))
+            .catch();
         },
         addEmployee({}, employee) {
             return axios.post(`${RESOURCE_EMPLOYEE}`, {
@@ -40,6 +49,10 @@ const EmployeeStore = {
                 photo: employee.photo,
                 nid: employee.nid,
                 joining_date: employee.joining_date
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
@@ -53,13 +66,21 @@ const EmployeeStore = {
                 photo: employee.photo,
                 nid: employee.nid,
                 joining_date: employee.joining_date
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
             })
             .then();
         },
         deleteEmployee({}, id) {
-            axios.delete(`${RESOURCE_EMPLOYEE}/${id}`)
-                .then(() => this.dispatch('employee/fetch'))
-                .catch();
+            axios.delete(`${RESOURCE_EMPLOYEE}/${id}`, {
+                headers: {
+                    Authorization: 'Bearer ' + AppStorage.getToken()
+                }
+            })
+            .then(() => this.dispatch('employee/fetch'))
+            .catch();
         },
     }
 };
