@@ -20,9 +20,11 @@ Route::group([
     'middleware' => 'JWT',
 ], function ($router) {
 
-    Route::apiResource('/role','Api\RoleController');
-    Route::apiResource('/user','Api\UserController');
-    Route::apiResource('/permission','Api\PermissionController');
+    // Route::group(['middleware' => 'CheckPermission',], function ($e) {
+        Route::apiResource('/role','Api\RoleController');
+        Route::apiResource('/user','Api\UserController');
+        Route::apiResource('/permission','Api\PermissionController');
+    // });
 
     Route::Get('/has/{id}', 'Api\UserController@getHasRole');
 
