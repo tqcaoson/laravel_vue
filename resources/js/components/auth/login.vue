@@ -75,11 +75,7 @@
   }, 
   methods:{
     login(){
-      axios.post('/api/auth/login',this.form, {
-        headers: {
-          Authorization: 'Bearer ' + AppStorage.getToken()
-        }
-      })
+      axios.post('/api/auth/login',this.form)
       .then(res => {
         User.responseAfterLogin(res)
         this.$store.dispatch('user/fetchHasRole', res.data.user_id, )

@@ -2058,11 +2058,7 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      axios.post('/api/auth/login', this.form, {
-        headers: {
-          Authorization: 'Bearer ' + _Helpers_AppStorage__WEBPACK_IMPORTED_MODULE_0__["default"].getToken()
-        }
-      }).then(function (res) {
+      axios.post('/api/auth/login', this.form).then(function (res) {
         User.responseAfterLogin(res);
 
         _this.$store.dispatch('user/fetchHasRole', res.data.user_id);
